@@ -27,7 +27,9 @@ jobs:
       - name: Build the app
         run: npm run build
 
+  deployment:
       - name: rsync deployment
+        needs: deploy
   # You may pin to the exact commit or the version.
   # uses: D3rHase/rsync-deploy-action@5af3ec7ad17529c7c223819f54fe0d5cad1357e1
         uses: D3rHase/rsync-deploy-action@v0.2
@@ -36,5 +38,5 @@ jobs:
             PORT: ${{ secrets.PORT }}
             USER: ${{ secrets.USER }}
             PRIVATE_SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            REPOSITORY_PATH: www/*
-            SERVER_PATH: /var/www/www
+            REPOSITORY_PATH: build/*
+            SERVER_PATH: /var/www/html
