@@ -22,19 +22,7 @@ jobs:
           node-version: 16
 
       - name: Install dependencies
-        run: npm ci
+        run: npm install --save @sentry/react
 
       - name: Build the app
-        run: npm run build
-
-      - name: rsync deployment
-  # You may pin to the exact commit or the version.
-  # uses: D3rHase/rsync-deploy-action@5af3ec7ad17529c7c223819f54fe0d5cad1357e1
-        uses: D3rHase/rsync-deploy-action@v0.2
-        with:
-            HOST: ${{ secrets.HOST }}
-            PORT: ${{ secrets.PORT }}
-            USER: ${{ secrets.USER }}
-            PRIVATE_SSH_KEY: ${{ secrets.SSH_PRIVATE_KEY }}
-            REPOSITORY_PATH: build/*
-            SERVER_PATH: /home/ubuntu
+        run: npm start
